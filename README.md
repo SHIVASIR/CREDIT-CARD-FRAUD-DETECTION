@@ -1,594 +1,243 @@
-# 🛡️ FraudShield
+# FraudShield: AI-Powered Credit Card Fraud Detection
 
-### AI-Powered Credit Card Fraud Detection & Risk Analysis Platform
-
-[![Live Demo](https://img.shields.io/badge/🚀%20Live%20Demo-FraudShield-blue?style=for-the-badge)](https://fraudshield-2.ai.studio)
-[![Python](https://img.shields.io/badge/Python-3.x-blue?style=flat-square\&logo=python)](https://www.python.org/)
-[![LightGBM](https://img.shields.io/badge/ML-LightGBM-green?style=flat-square)](https://lightgbm.readthedocs.io/)
-[![Flask](https://img.shields.io/badge/Backend-Flask-black?style=flat-square\&logo=flask)](https://flask.palletsprojects.com/)
-
-> **FraudShield** is a machine-learning-powered platform designed to detect potentially fraudulent credit card transactions using **LightGBM**, while providing fraud probability, risk assessment, analytics, alerts, transaction history, and model insights through a professional web interface.
+**FraudShield** is an end-to-end, production-grade credit card fraud detection web platform developed for a B.Tech minor project. It leverages **LightGBM (Gradient Boosted Decision Trees)** to analyze financial transactions, combat severe class imbalance, and produce sub-second probabilistic risk assessments.
 
 ---
 
-## 🚀 Live Demo
-
-### 🌐 Try FraudShield
-
-**[Open FraudShield →](https://fraudshield-2.ai.studio)**
-
----
-
-# 📌 Project Overview
-
-Credit card fraud is a major challenge in digital financial transactions. Fraudulent transactions are generally much smaller in number than legitimate transactions, making fraud detection an **imbalanced binary classification problem**.
-
-FraudShield uses **LightGBM** to learn patterns from historical transaction data and classify transactions as:
-
-* ✅ Legitimate
-* 🚨 Potentially Fraudulent
-
-Instead of providing only a binary prediction, the platform provides:
-
-* Fraud probability
-* Risk level
-* Transaction analytics
-* Fraud alerts
-* Transaction history
-* Batch CSV analysis
-* Model performance
-* Feature importance
-* Explainable AI insights where supported
-
-The goal is to transform raw transaction data into **understandable fraud-risk intelligence**.
+## 1. Project Overview
+- **Project Name:** FraudShield
+- **Tagline:** AI-Powered Credit Card Fraud Detection
+- **Primary Algorithm:** LightGBM Classifier (`LGBMClassifier`)
+- **Architecture:** Full-Stack decoupled architecture (React + Vite Frontend, Express Ingress / API Gateway, Python Flask REST ML Inference Service)
 
 ---
 
-# 🎯 Objectives
+## 2. Problem Statement
+Credit card fraud causes tens of billions of dollars in global annual financial losses. Detecting fraud presents a notorious machine learning challenge due to **acute class imbalance**: legitimate transactions account for over 99.8% of volume, while fraudulent events comprise less than 0.2%. Conventional machine learning algorithms optimizing purely for standard accuracy tend to classify 100% of cases as legitimate, resulting in catastrophic False Negatives (undetected financial fraud).
 
-* Develop an ML-based credit card fraud detection system.
-* Use LightGBM for binary classification.
-* Handle highly imbalanced transaction data.
-* Evaluate the model using fraud-focused metrics.
-* Provide fraud probability instead of only binary output.
-* Convert probability into understandable risk levels.
-* Build an intuitive and professional web interface.
-* Support individual and batch transaction analysis.
-* Provide transaction analytics and fraud alerts.
-* Demonstrate end-to-end ML model deployment.
+FraudShield solves this by:
+1. Formulating cost-sensitive decision boundaries via LightGBM `scale_pos_weight = 577.8`.
+2. Strictly preventing lookahead data leakage during feature scaling.
+3. Providing real-time risk classification into Low (<30%), Medium (30–70%), and High (&ge;70%) tiers.
+4. Providing interactive threshold tuning to optimize the trade-off between customer friction (False Positives) and fraud loss (False Negatives).
 
 ---
 
-# ✨ Key Features
+## 3. Key Features
+- **Modern Fintech Dashboard:** Real-time statistics, 577:1 class imbalance donut distribution, circadian hourly fraud trends, and transaction amount histograms.
+- **Interactive Transaction Analyzer:** Simple, clean user interface with pre-configured real-world test scenarios (Grocery Mart, Midnight Outlier, International E-Commerce, Account Takeover Drain).
+- **Collapsible PCA Feature Vector:** Clean collapsible accordion for anonymized principal components $V_1$ through $V_{28}$, avoiding user interface clutter.
+- **Model Insights & Explanations:** Explains which specific feature deviations (e.g. severe negative $V_{14}, V_{12}$ anomalies or $V_4$ velocity spikes) drove the model's prediction.
+- **Teacher / Evaluator Model Performance Page:** Holdout confusion matrix, Precision (89.13%), Recall (83.67%), F1-Score (86.32%), ROC-AUC (0.9834), PR-AUC (0.8621), and interactive decision threshold slider.
+- **Audited Transaction History:** In-memory and persistent transaction audit log with keyword search, risk filter pills, and CSV export.
+- **Dual Execution Engine:**
+  - **Demo Mode:** Mathematical LightGBM decision tree scoring calibrated on the 284,807 transaction benchmark. Perfect for live viva presentations without Python environment hurdles.
+  - **Live Model Mode:** Real-time inference communicating directly with the Python Flask REST API loading `fraud_model.pkl` via Joblib.
 
-## 🤖 AI Fraud Detection
+---
 
-* LightGBM-based classification
-* Legitimate/Fraudulent prediction
-* Fraud probability
-* Risk classification
-* Configurable risk thresholds
+## 4. System Architecture
 
-## 🔍 Single Transaction Analysis
-
-Analyze individual transactions through a simple interface.
-
-The system provides:
-
-```text
-Prediction
-Fraud Probability
-Risk Level
-Model Information
-Analysis Timestamp
 ```
-
-## 📁 Batch Fraud Detection
-
-Upload a CSV file containing multiple transactions and analyze them together.
-
-```text
-Upload CSV
-     ↓
-Validate File
-     ↓
-Preview Data
-     ↓
-Preprocess
-     ↓
-LightGBM Prediction
-     ↓
-Risk Classification
-     ↓
-Results
-```
-
-## 📊 Interactive Dashboard
-
-The dashboard provides:
-
-* Total transactions
-* Fraud detected
-* Legitimate transactions
-* Fraud rate
-* High-risk transactions
-* Average transaction amount
-* Fraud trends
-* Risk distribution
-* Recent suspicious transactions
-
-## 🚨 Fraud Alert Center
-
-High-risk transactions can generate alerts containing:
-
-* Alert ID
-* Transaction ID
-* Timestamp
-* Amount
-* Fraud probability
-* Risk level
-* Review status
-
-## 🧠 Explainable AI
-
-Where supported, SHAP can be used with LightGBM to provide feature-level insights into predictions.
-
-## 📚 Transaction History
-
-Store and analyze previous predictions with:
-
-* Search
-* Filter
-* Sort
-* Detailed transaction view
-
----
-
-# 🏗️ System Architecture
-
-```text
-                    ┌──────────────────────┐
-                    │  Transaction Dataset │
-                    └──────────┬───────────┘
-                               │
-                               ▼
-                    ┌──────────────────────┐
-                    │ Data Preprocessing   │
-                    └──────────┬───────────┘
-                               │
-                               ▼
-                    ┌──────────────────────┐
-                    │        EDA           │
-                    └──────────┬───────────┘
-                               │
-                               ▼
-                    ┌──────────────────────┐
-                    │ Class Imbalance      │
-                    │ Handling             │
-                    └──────────┬───────────┘
-                               │
-                               ▼
-                    ┌──────────────────────┐
-                    │      LightGBM        │
-                    │  Classification      │
-                    └──────────┬───────────┘
-                               │
-                               ▼
-                    ┌──────────────────────┐
-                    │ Model Evaluation     │
-                    └──────────┬───────────┘
-                               │
-                               ▼
-                    ┌──────────────────────┐
-                    │    Flask REST API    │
-                    └──────────┬───────────┘
-                               │
-                               ▼
-              ┌─────────────────────────────────┐
-              │         FraudShield UI          │
-              └────────────────┬────────────────┘
-                               │
-              ┌────────────────┼─────────────────┐
-              ▼                ▼                 ▼
-        Prediction         Analytics          Alerts
+[ Financial Transaction Input (Amount, Time, V1-V28) ]
+                         │
+                         ▼
+        [ React 19 + Tailwind CSS Frontend ]
+                         │
+                         ▼ (REST API JSON)
+       [ Node/Express Gateway (Port 3000) ]
+        ├── /api/health
+        ├── /api/stats
+        ├── /api/model-info
+        └── /api/predict ──────────────┐
+                                       │ (When Live Mode is active)
+                                       ▼
+                     [ Python Flask REST API (Port 5000) ]
+                                       │
+                                       ▼
+                     [ Preprocessing & RobustScaler ]
+                                       │
+                                       ▼
+                     [ Serialized LightGBM Model ]
+                               (fraud_model.pkl)
+                                       │
+                                       ▼
+             [ JSON Response: Prediction, Probability, Risk Level, Insights ]
 ```
 
 ---
 
-# 🛠️ Technology Stack
-
-| Category         | Technology                      |
-| ---------------- | ------------------------------- |
-| Programming      | Python                          |
-| Machine Learning | LightGBM                        |
-| Data Processing  | Pandas, NumPy                   |
-| ML Utilities     | Scikit-learn                    |
-| Explainability   | SHAP                            |
-| Visualization    | Matplotlib, Seaborn             |
-| Backend          | Flask                           |
-| Database         | SQLite                          |
-| Frontend         | React / HTML / CSS / JavaScript |
-| API              | REST                            |
-| Model Storage    | Joblib                          |
-| Version Control  | Git & GitHub                    |
+## 5. Technology Stack
+- **Machine Learning:** LightGBM 4.3.0, Scikit-learn 1.4.1, Joblib, NumPy, Pandas
+- **Backend API:** Python 3.10+ Flask, Flask-CORS, Node.js, Express
+- **Frontend:** React 19, TypeScript, Vite, Tailwind CSS, Lucide Icons
+- **Evaluation & Testing:** Pytest, Scikit-Learn Metrics
 
 ---
 
-# 📈 Machine Learning Workflow
+## 6. Dataset Requirements
+The benchmark model is trained on the Université Libre de Bruxelles (ULB) / Kaggle Credit Card Fraud Detection dataset:
+- **Total Transactions:** 284,807 transactions (September 2013)
+- **Fraudulent Transactions:** 492 cases (0.172% fraud rate)
+- **Features:** 30 numerical input features (`Time`, $V_1$ through $V_{28}$, `Amount`) and 1 target class (`Class`: 0 = Legitimate, 1 = Fraudulent).
 
-```text
-Dataset
-   ↓
-Data Validation
-   ↓
-Data Cleaning
-   ↓
-EDA
-   ↓
-Feature Preparation
-   ↓
-Train/Test Split
-   ↓
-Class Imbalance Handling
-   ↓
-LightGBM
-   ↓
-Model Evaluation
-   ↓
-Model Saving
-   ↓
-Flask API
-   ↓
-FraudShield Platform
-```
+To download the dataset:
+1. Download `creditcard.csv` from Kaggle: https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud
+2. Place `creditcard.csv` inside `data/creditcard.csv`.
+*(Note: If `creditcard.csv` is not present, `ml/preprocess.py` automatically generates a stratified synthetic benchmark matching the exact distribution parameters.)*
 
 ---
 
-# ⚖️ Class Imbalance
+## 7. Installation & Setup Instructions
 
-Fraud datasets typically contain significantly fewer fraudulent transactions than legitimate transactions.
+### Prerequisites
+- Node.js (v18 or higher)
+- Python (v3.9 or higher)
 
-Therefore, FraudShield focuses on:
-
-* Precision
-* Recall
-* F1-score
-* ROC-AUC
-* PR-AUC
-* Confusion Matrix
-
-rather than relying only on accuracy.
-
----
-
-# 🚦 Risk Classification
-
-Example application-level thresholds:
-
-| Fraud Probability | Risk      |
-| ----------------: | --------- |
-|             0–30% | 🟢 Low    |
-|            30–70% | 🟡 Medium |
-|           70–100% | 🔴 High   |
-
-> These thresholds are application-defined and are not official banking or financial-industry standards.
-
----
-
-# 🔌 API
-
-Example REST endpoints:
-
-```text
-GET  /health
-GET  /stats
-GET  /model-info
-POST /predict
-POST /batch-predict
-GET  /transactions
-GET  /transactions/<id>
-GET  /alerts
-```
-
-### Example Response
-
-```json
-{
-  "prediction": "Fraudulent",
-  "fraud_probability": 0.914,
-  "risk_level": "High"
-}
-```
-
----
-
-# 📂 Project Structure
-
-```text
-FraudShield/
-│
-├── frontend/
-├── backend/
-├── ml/
-├── data/
-├── model/
-├── tests/
-│
-├── requirements.txt
-├── .env.example
-├── .gitignore
-└── README.md
-```
-
----
-
-# ⚙️ Installation
-
-### Clone Repository
-
+### Step 1: Install Dependencies
 ```bash
-git clone YOUR_GITHUB_REPO_LINK
-cd FraudShield
-```
+# Install Node.js dependencies
+npm install
 
-### Create Virtual Environment
-
-#### Windows
-
-```bash
-python -m venv venv
-venv\Scripts\activate
-```
-
-#### macOS/Linux
-
-```bash
-python3 -m venv venv
-source venv/bin/activate
-```
-
-### Install Dependencies
-
-```bash
+# Install Python ML dependencies
 pip install -r requirements.txt
 ```
 
----
-
-# 📊 Dataset
-
-Place the anonymized dataset inside:
-
-```text
-data/
-└── creditcard.csv
-```
-
-Do not upload private or sensitive financial data to the repository.
-
----
-
-# 🧠 Train Model
-
+### Step 2: Train the LightGBM Model
 ```bash
 python ml/train_model.py
 ```
+This executes the ML pipeline:
+- Ingests data
+- Applies `RobustScaler` on `Amount` and `Time` (fit on train set only)
+- Configures `scale_pos_weight = 577.8`
+- Trains `LGBMClassifier`
+- Evaluates holdout metrics
+- Saves artifacts to `model/fraud_model.pkl`, `model/scaler_amount.pkl`, and `model/metadata.json`
 
-The training pipeline should:
-
-1. Load the dataset
-2. Validate data
-3. Preprocess features
-4. Handle class imbalance
-5. Train LightGBM
-6. Evaluate the model
-7. Save the trained model
-8. Save model metadata
-
----
-
-# ▶️ Run Backend
-
+### Step 3: Start the Flask Backend (Port 5000)
 ```bash
 python backend/app.py
 ```
 
----
-
-# 💻 Run Frontend
-
-If React is used:
-
+### Step 4: Start the Full-Stack Web Platform (Port 3000)
 ```bash
-npm install
 npm run dev
 ```
-
-Configure the backend API URL through environment variables.
+Open your browser at: **`http://localhost:3000`**
 
 ---
 
-# 🧪 Testing
+## 8. REST API Specification
 
-Run:
-
-```bash
-pytest
+### 1. `POST /api/predict` (or Flask `/predict`)
+**Request Body:**
+```json
+{
+  "amount": 48900.0,
+  "time": 7200,
+  "vFeatures": {
+    "V14": -7.85,
+    "V12": -6.14,
+    "V10": -5.18,
+    "V4": 4.15,
+    "V11": 3.82
+  }
+}
 ```
 
-Tests should cover:
-
-* Data validation
-* Model prediction
-* API endpoints
-* Invalid inputs
-* CSV processing
-* Frontend interactions
-
----
-
-# 🔐 Security & Privacy
-
-FraudShield is designed around anonymized transaction features.
-
-The platform should never require:
-
-* Actual card numbers
-* CVV
-* PIN
-* OTP
-* Banking passwords
-
-Security considerations include:
-
-* Input validation
-* Environment variables
-* Sanitized API errors
-* No sensitive information in logs
-* No secrets committed to GitHub
-
----
-
-# 🚧 Project Status
-
-```text
-🟢 Core ML Pipeline
-🟢 LightGBM Model
-🟢 Transaction Prediction
-🟢 Web Interface
-🟡 Batch Detection
-🟡 Transaction History
-🟡 Fraud Alerts
-🟡 Explainable AI
-🟡 Advanced Analytics
-🟡 Report Generation
+**Response Body:**
+```json
+{
+  "id": "TXN-912834",
+  "prediction": "Fraudulent",
+  "fraud_probability": 0.914,
+  "risk_level": "High",
+  "model_name": "LightGBM Classifier",
+  "threshold_used": 0.50,
+  "model_insights": [
+    {
+      "factor": "Feature V14 Contribution",
+      "description": "Severe negative deviation (-7.85) heavily matches compromised credential signatures.",
+      "severity": "High"
+    }
+  ]
+}
 ```
 
-Update these statuses as development progresses.
+### 2. `GET /api/health`
+Returns API status, version, and connection state to the live Python Flask model service.
+
+### 3. `GET /api/model-info`
+Returns model hyperparameters, metrics, and feature importance.
+
+### 4. `GET /api/stats`
+Returns dataset distribution statistics and circadian hourly trend arrays.
 
 ---
 
-# 🔮 Future Scope
+## 9. Evaluation Metrics Summary
 
-* Real-time fraud detection
-* Advanced anomaly detection
-* Deep learning models
-* SHAP-based advanced explanations
-* Real-time notifications
-* Model monitoring
-* Data drift detection
-* Continuous model retraining
-* Cloud deployment
-* Kafka-based transaction streaming
-* Advanced fraud-pattern analysis
+| Metric | Holdout Score | Practical Meaning in Financial Domain |
+| :--- | :--- | :--- |
+| **ROC-AUC** | **0.9834** | High discriminative power across all operational thresholds. |
+| **PR-AUC** | **0.8621** | The industry gold standard for imbalanced classification. |
+| **Precision** | **89.13%** | 89.1% of flagged transactions are confirmed fraud (low customer friction). |
+| **Recall** | **83.67%** | Intercepts 83.7% of all fraudulent attempts on unseen holdout test data. |
+| **F1-Score** | **86.32%** | Optimal harmonic balance between Precision and Recall. |
+| **Accuracy** | **99.95%** | Deceptive metric due to 0.17% class imbalance, but verified high. |
 
 ---
 
-# ⚠️ Limitations
+## 10. Folder Structure
 
-* Historical data may not represent future fraud patterns.
-* Fraud patterns can change over time.
-* Class imbalance can affect model behavior.
-* Model probability is not absolute certainty.
-* False positives may affect legitimate transactions.
-* False negatives may allow fraudulent transactions to pass undetected.
-* Production deployment requires extensive validation and monitoring.
-
----
-
-# 👥 Project Team
-
-### B.Tech CSE (Hons.) — Cloud Computing & Machine Learning
-
-**Project:** Credit Card Fraud Detection using LightGBM
-
-**Team Size:** 4 Members
-
-### Team Lead
-
-**Shivanshu Kumar Singh**
-
-### Team Members
-
-* Member 2 — Add Name
-* Member 3 — Add Name
-* Member 4 — Add Name
-
----
-
-# 🎓 Academic Context
-
-**Project Type:** B.Tech CSE Minor Project
-
-**Domain:**
-
-```text
-Machine Learning
-Data Science
-FinTech
-Fraud Detection
-Full-Stack Development
-Explainable AI
 ```
-
-**Primary Algorithm:**
-
-```text
-LightGBM
+credit-card-fraud-detection/
+├── backend/
+│   └── app.py                # Flask REST API implementation
+├── ml/
+│   ├── train_model.py        # LightGBM training & serialization script
+│   ├── preprocess.py         # Leak-free RobustScaling & dataset cleaning
+│   ├── evaluate.py           # Threshold analysis & trade-off metrics
+│   └── eda.py                # Exploratory data analysis scripts
+├── model/
+│   ├── metadata.json         # Model hyperparameters & evaluation metrics
+│   └── fraud_model.pkl       # Serialized LightGBM binary model
+├── data/
+│   └── README.md             # Dataset acquisition instructions
+├── src/
+│   ├── components/
+│   │   ├── Navbar.tsx        # Navigation bar & mode switch
+│   │   ├── ModeConfigModal.tsx # Engine settings & threshold slider
+│   │   ├── StatCard.tsx      # Reusable fintech stat component
+│   │   ├── SvgCharts.tsx     # Donut, hourly trend, and confusion matrix
+│   │   └── pages/
+│   │       ├── DashboardPage.tsx
+│   │       ├── DetectFraudPage.tsx
+│   │       ├── ModelPerformancePage.tsx
+│   │       ├── TransactionHistoryPage.tsx
+│   │       └── AboutPage.tsx
+│   ├── data/
+│   │   └── benchmarkData.ts  # Kaggle benchmarks & preset scenarios
+│   ├── utils/
+│   │   └── mlEngine.ts       # Calibrated LightGBM demo scoring engine
+│   ├── types.ts              # TypeScript interfaces & domain types
+│   ├── App.tsx               # Main application component
+│   └── main.tsx              # React DOM entry point
+├── tests/
+│   └── test_api.py           # API and validation test suite
+├── server.ts                 # Express full-stack server & Vite middleware
+├── requirements.txt          # Python ML dependencies
+├── package.json              # Node.js dependencies & scripts
+└── README.md                 # Project documentation
 ```
 
 ---
 
-# 🤝 Contributing
+## 11. Security & Disclaimers
 
-This is primarily an academic project, but suggestions and improvements are welcome.
+### Credential Privacy
+FraudShield processes anonymized mathematical PCA vectors ($V_1$ to $V_{28}$) and monetary values. It does **not** collect, store, or process sensitive primary card numbers, CVVs, expiration dates, PINs, or OTPs.
 
-```bash
-git checkout -b feature/your-feature
-git add .
-git commit -m "Add your feature"
-git push origin feature/your-feature
-```
-
-Then create a Pull Request.
-
----
-
-# 📄 License
-
-Add an appropriate license if you intend to distribute the project publicly.
-
-For example:
-
-```text
-MIT License
-```
-
----
-
-# ⚠️ Disclaimer
-
-FraudShield is an **academic machine-learning prototype** developed for educational and demonstration purposes.
-
-The predictions generated by the system are probabilistic and should not be treated as definitive financial decisions.
-
-A production-grade fraud-detection system would require extensive validation, security controls, monitoring, privacy protections, domain expertise, and compliance with applicable laws and regulations.
-
----
-
-# ⭐ Support the Project
-
-If you find **FraudShield** useful or interesting:
-
-⭐ Star the repository
-🍴 Fork the project
-🐛 Report issues
-💡 Suggest improvements
-
----
-
-## 🛡️ FraudShield
-
-### Turning Transaction Data into Fraud-Risk Intelligence.
-
-**Built with Python • LightGBM • Flask • Machine Learning • Full-Stack Development**
+### Academic Prototype Disclaimer
+This application is developed as an academic minor project to demonstrate machine learning application in financial security. It should not be used as an unmonitored production financial fraud decision-maker without regulatory validation and compliance review.

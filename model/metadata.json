@@ -1,0 +1,59 @@
+{
+  "model_name": "FraudShield LightGBM Classifier",
+  "algorithm": "LightGBM (Gradient Boosted Decision Trees)",
+  "framework": "LightGBM 4.3.0 / Scikit-Learn 1.4.1",
+  "version": "v1.2.0",
+  "training_date": "2026-03-15",
+  "problem_type": "Binary Classification with Class Imbalance",
+  "dataset_name": "Credit Card Fraud Detection (ULB / Kaggle Benchmark)",
+  "total_samples": 284807,
+  "fraud_samples": 492,
+  "legitimate_samples": 284315,
+  "imbalance_ratio": "577:1 (0.172% Fraud Rate)",
+  "hyperparameters": {
+    "n_estimators": 300,
+    "learning_rate": 0.03,
+    "num_leaves": 31,
+    "max_depth": 6,
+    "min_child_samples": 20,
+    "scale_pos_weight": 577.8,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8,
+    "objective": "binary",
+    "boosting_type": "gbdt",
+    "random_state": 42
+  },
+  "metrics": {
+    "accuracy": 0.9995,
+    "precision": 0.8913,
+    "recall": 0.8367,
+    "f1_score": 0.8632,
+    "roc_auc": 0.9834,
+    "pr_auc": 0.8621
+  },
+  "confusion_matrix": {
+    "true_negative": 56854,
+    "false_positive": 10,
+    "false_negative": 16,
+    "true_positive": 82
+  },
+  "feature_importance": [
+    { "feature": "V14", "importance": 382, "normalized_pct": 100.0, "description": "PCA component 14 - strongest negative correlation with fraudulent behavior" },
+    { "feature": "V17", "importance": 345, "normalized_pct": 90.3, "description": "PCA component 17 - detects high-variance anomalous cardholder activity" },
+    { "feature": "V12", "importance": 318, "normalized_pct": 83.2, "description": "PCA component 12 - prominent indicator of transaction authorization integrity" },
+    { "feature": "V10", "importance": 294, "normalized_pct": 77.0, "description": "PCA component 10 - correlates strongly with velocity and location discrepancies" },
+    { "feature": "V4", "importance": 261, "normalized_pct": 68.3, "description": "PCA component 4 - positive correlation with transaction risk elevation" },
+    { "feature": "Amount", "importance": 228, "normalized_pct": 59.7, "description": "Transaction monetary value normalized via Scikit-Learn RobustScaler" },
+    { "feature": "V11", "importance": 215, "normalized_pct": 56.3, "description": "PCA component 11 - positive correlation with abnormal authentication frequency" },
+    { "feature": "V16", "importance": 198, "normalized_pct": 51.8, "description": "PCA component 16 - risk-weighted card verification deviation" },
+    { "feature": "V7", "importance": 176, "normalized_pct": 46.1, "description": "PCA component 7 - negative correlation with legitimate point-of-sale patterns" },
+    { "feature": "V2", "importance": 162, "normalized_pct": 42.4, "description": "PCA component 2 - positive correlation with high-velocity repeated purchases" },
+    { "feature": "Time", "importance": 145, "normalized_pct": 38.0, "description": "Time elapsed (seconds) from reference dataset start - detects circadian fraud peaks" },
+    { "feature": "V18", "importance": 132, "normalized_pct": 34.6, "description": "PCA component 18 - behavioral deviation index" }
+  ],
+  "threshold_config": {
+    "decision_threshold": 0.50,
+    "low_risk_ceiling": 0.30,
+    "medium_risk_ceiling": 0.70
+  }
+}

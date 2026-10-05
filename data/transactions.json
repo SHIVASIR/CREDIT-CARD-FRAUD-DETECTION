@@ -1,0 +1,530 @@
+[
+  {
+    "id": "TXN-530028",
+    "timestamp": "2026-10-04T18:58:18.909Z",
+    "amount": 149.99,
+    "time": 43200,
+    "prediction": "Legitimate",
+    "fraud_probability": 0.021,
+    "risk_level": "Low",
+    "mode": "DEMO",
+    "model_name": "LightGBM Classifier",
+    "model_version": "v1.2",
+    "source": "Single",
+    "threshold_used": 0.5,
+    "model_insights": [
+      {
+        "factor": "V14 Contribution",
+        "description": "Significant negative shift on V14 (-0.3) matches historical compromised credentials.",
+        "severity": "Medium",
+        "value": -0.3
+      }
+    ],
+    "feature_contributions": [
+      {
+        "feature": "V4",
+        "feature_value": -0.8,
+        "contribution": -0.544,
+        "magnitude": 0.544,
+        "direction": "legitimate",
+        "description": "PCA component 4 - velocity & repeated frequency spikes"
+      },
+      {
+        "feature": "V14",
+        "feature_value": -0.3,
+        "contribution": 0.264,
+        "magnitude": 0.264,
+        "direction": "fraud",
+        "description": "PCA component 14 - credential authorization integrity"
+      },
+      {
+        "feature": "V3",
+        "feature_value": 1.1,
+        "contribution": -0.22,
+        "magnitude": 0.22,
+        "direction": "legitimate",
+        "description": "PCA component 3 - authentication baseline"
+      },
+      {
+        "feature": "V1",
+        "feature_value": -1.2,
+        "contribution": 0.18,
+        "magnitude": 0.18,
+        "direction": "fraud",
+        "description": "PCA component 1 - primary account activity"
+      },
+      {
+        "feature": "V2",
+        "feature_value": 0.5,
+        "contribution": 0.18,
+        "magnitude": 0.18,
+        "direction": "fraud",
+        "description": "PCA component 2 - transaction frequency divergence"
+      },
+      {
+        "feature": "Amount",
+        "feature_value": 149.99,
+        "contribution": -0.15,
+        "magnitude": 0.15,
+        "direction": "legitimate",
+        "description": "Normalized transaction volume"
+      },
+      {
+        "feature": "Time (Hour)",
+        "feature_value": 12,
+        "contribution": -0.1,
+        "magnitude": 0.1,
+        "direction": "legitimate",
+        "description": "Daytime business hours authorization"
+      }
+    ]
+  },
+  {
+    "id": "TXN-186958",
+    "timestamp": "2026-10-04T18:47:27.764Z",
+    "amount": 1450,
+    "time": 43200,
+    "prediction": "Fraudulent",
+    "fraud_probability": 0.6406,
+    "risk_level": "Medium",
+    "mode": "DEMO",
+    "model_name": "LightGBM Classifier",
+    "model_version": "v1.2",
+    "source": "Single",
+    "threshold_used": 0.5,
+    "model_insights": [
+      {
+        "factor": "V14 Contribution",
+        "description": "Significant negative shift on V14 (-4.2) matches historical compromised credentials.",
+        "severity": "High",
+        "value": -4.2
+      },
+      {
+        "factor": "Amount Contribution",
+        "description": "Amount value (1450) shifts model log-odds +0.45 toward fraud.",
+        "severity": "Medium",
+        "value": 1450
+      }
+    ],
+    "feature_contributions": [
+      {
+        "feature": "V14",
+        "feature_value": -4.2,
+        "contribution": 3.696,
+        "magnitude": 3.696,
+        "direction": "fraud",
+        "description": "PCA component 14 - credential authorization integrity"
+      },
+      {
+        "feature": "Amount",
+        "feature_value": 1450,
+        "contribution": 0.45,
+        "magnitude": 0.45,
+        "direction": "fraud",
+        "description": "Normalized transaction volume"
+      },
+      {
+        "feature": "Time (Hour)",
+        "feature_value": 12,
+        "contribution": -0.1,
+        "magnitude": 0.1,
+        "direction": "legitimate",
+        "description": "Daytime business hours authorization"
+      },
+      {
+        "feature": "V1",
+        "feature_value": 0.12,
+        "contribution": -0.018,
+        "magnitude": 0.018,
+        "direction": "legitimate",
+        "description": "PCA component 1 - primary account activity"
+      }
+    ]
+  },
+  {
+    "id": "TXN-842910",
+    "timestamp": "2026-10-04T16:32:03.981Z",
+    "amount": 1450,
+    "time": 43200,
+    "prediction": "Legitimate",
+    "fraud_probability": 0.042,
+    "risk_level": "Low",
+    "mode": "DEMO",
+    "model_name": "LightGBM Classifier (Kaggle ULB)",
+    "model_version": "v1.2",
+    "source": "Single",
+    "threshold_used": 0.5,
+    "model_insights": [
+      {
+        "factor": "Normalized Baseline Features",
+        "description": "All 28 principal components and transaction metadata align within normal standard deviations.",
+        "severity": "Low",
+        "value": "Normal Range"
+      }
+    ]
+  },
+  {
+    "id": "TXN-912834",
+    "timestamp": "2026-10-04T14:02:03.981Z",
+    "amount": 48900,
+    "time": 7200,
+    "prediction": "Fraudulent",
+    "fraud_probability": 0.914,
+    "risk_level": "High",
+    "mode": "DEMO",
+    "model_name": "LightGBM Classifier (Kaggle ULB)",
+    "model_version": "v1.2",
+    "source": "Single",
+    "threshold_used": 0.5,
+    "model_insights": [
+      {
+        "factor": "Feature V14 Contribution",
+        "description": "Severe negative deviation (-7.85) heavily matches compromised credential signatures.",
+        "severity": "High",
+        "value": -7.85
+      },
+      {
+        "factor": "High-Value Outlier Flag",
+        "description": "Transaction value of ₹48,900 exceeds 98.5th percentile of retail transactions.",
+        "severity": "Medium",
+        "value": "₹48,900"
+      }
+    ]
+  },
+  {
+    "id": "TXN-BCH-1002",
+    "timestamp": "2026-10-04T12:32:03.981Z",
+    "amount": 95000,
+    "time": 14400,
+    "prediction": "Fraudulent",
+    "fraud_probability": 0.999,
+    "risk_level": "High",
+    "mode": "DEMO",
+    "model_name": "LightGBM Classifier (Kaggle ULB)",
+    "model_version": "v1.2",
+    "source": "Batch",
+    "threshold_used": 0.5,
+    "model_insights": [
+      {
+        "factor": "Feature V14 Contribution",
+        "description": "Severe negative deviation (-8.20) heavily matches compromised credential signatures in PCA space.",
+        "severity": "High",
+        "value": -8.2
+      },
+      {
+        "factor": "Feature V12 Contribution",
+        "description": "Severe negative deviation (-6.50) heavily matches compromised credential signatures in PCA space.",
+        "severity": "High",
+        "value": -6.5
+      }
+    ]
+  },
+  {
+    "id": "TXN-BCH-1001",
+    "timestamp": "2026-10-04T12:20:03.981Z",
+    "amount": 500,
+    "time": 3600,
+    "prediction": "Legitimate",
+    "fraud_probability": 0.043,
+    "risk_level": "Low",
+    "mode": "DEMO",
+    "model_name": "LightGBM Classifier (Kaggle ULB)",
+    "model_version": "v1.2",
+    "source": "Batch",
+    "threshold_used": 0.5,
+    "model_insights": [
+      {
+        "factor": "Off-Hours Circadian Activity",
+        "description": "Transaction timestamp corresponds to 01:00 hrs, historically showing higher baseline fraud incidence.",
+        "severity": "Low",
+        "value": "1:00 hrs"
+      }
+    ]
+  },
+  {
+    "id": "TXN-773412",
+    "timestamp": "2026-10-04T11:32:03.981Z",
+    "amount": 64200,
+    "time": 14400,
+    "prediction": "Fraudulent",
+    "fraud_probability": 0.952,
+    "risk_level": "High",
+    "mode": "DEMO",
+    "model_name": "LightGBM Classifier (Kaggle ULB)",
+    "threshold_used": 0.5,
+    "model_insights": [
+      {
+        "factor": "Compound PCA Anomaly (V17 & V12)",
+        "description": "Joint negative deviation on V17 (-6.95) and V12 (-6.14) signals unauthorized card reproduction.",
+        "severity": "High",
+        "value": -6.95
+      }
+    ],
+    "model_version": "v1.2",
+    "source": "Single"
+  },
+  {
+    "id": "TXN-621804",
+    "timestamp": "2026-10-04T07:32:03.981Z",
+    "amount": 3200,
+    "time": 32400,
+    "prediction": "Legitimate",
+    "fraud_probability": 0.021,
+    "risk_level": "Low",
+    "mode": "DEMO",
+    "model_name": "LightGBM Classifier (Kaggle ULB)",
+    "threshold_used": 0.5,
+    "model_insights": [
+      {
+        "factor": "Routine Merchant Profile",
+        "description": "Automated fuel dispenser payment within historic geofence and velocity limits.",
+        "severity": "Low",
+        "value": "Low Variance"
+      }
+    ],
+    "model_version": "v1.2",
+    "source": "Single"
+  },
+  {
+    "id": "TXN-374189",
+    "timestamp": "2026-10-04T03:32:03.981Z",
+    "amount": 18500,
+    "time": 75600,
+    "prediction": "Legitimate",
+    "fraud_probability": 0.285,
+    "risk_level": "Low",
+    "mode": "DEMO",
+    "model_name": "LightGBM Classifier (Kaggle ULB)",
+    "threshold_used": 0.5,
+    "model_insights": [
+      {
+        "factor": "Moderate V4 Variance",
+        "description": "Slightly elevated transaction parameter (+1.95) within acceptable 2FA threshold.",
+        "severity": "Low",
+        "value": 1.95
+      }
+    ],
+    "model_version": "v1.2",
+    "source": "Single"
+  },
+  {
+    "id": "TXN-109482",
+    "timestamp": "2026-10-03T22:32:03.981Z",
+    "amount": 2150,
+    "time": 50400,
+    "prediction": "Legitimate",
+    "fraud_probability": 0.015,
+    "risk_level": "Low",
+    "mode": "DEMO",
+    "model_name": "LightGBM Classifier (Kaggle ULB)",
+    "threshold_used": 0.5,
+    "model_insights": [
+      {
+        "factor": "Recurring Utility Debit",
+        "description": "Consistent recurring payment signature with zero principal component variance.",
+        "severity": "Low",
+        "value": "Whitelisted"
+      }
+    ],
+    "model_version": "v1.2",
+    "source": "Single"
+  },
+  {
+    "id": "TXN-552190",
+    "timestamp": "2026-10-02T13:44:03.981Z",
+    "amount": 82500,
+    "time": 9800,
+    "prediction": "Fraudulent",
+    "fraud_probability": 0.886,
+    "risk_level": "High",
+    "mode": "DEMO",
+    "model_name": "LightGBM Classifier (Kaggle ULB)",
+    "threshold_used": 0.5,
+    "model_insights": [
+      {
+        "factor": "Cross-Border POS Terminal Anomaly",
+        "description": "Card present transaction in remote geographic territory discordant with prior transaction.",
+        "severity": "High",
+        "value": -5.18
+      }
+    ],
+    "model_version": "v1.2",
+    "source": "Single"
+  },
+  {
+    "id": "TXN-419082",
+    "timestamp": "2026-10-01T16:08:03.981Z",
+    "amount": 12400,
+    "time": 61200,
+    "prediction": "Legitimate",
+    "fraud_probability": 0.445,
+    "risk_level": "Medium",
+    "mode": "DEMO",
+    "model_name": "LightGBM Classifier (Kaggle ULB)",
+    "threshold_used": 0.5,
+    "model_insights": [
+      {
+        "factor": "Step-Up 2FA Challenge",
+        "description": "Elevated transaction score prompted SMS OTP challenge; verified successfully.",
+        "severity": "Medium",
+        "value": "44.5%"
+      }
+    ],
+    "model_version": "v1.2",
+    "source": "Single"
+  },
+  {
+    "id": "TXN-902341",
+    "timestamp": "2026-09-30T08:56:03.981Z",
+    "amount": 2800,
+    "time": 15800,
+    "prediction": "Fraudulent",
+    "fraud_probability": 0.765,
+    "risk_level": "High",
+    "mode": "DEMO",
+    "model_name": "LightGBM Classifier (Kaggle ULB)",
+    "threshold_used": 0.5,
+    "model_insights": [
+      {
+        "factor": "Micro-Charge Velocity Probe",
+        "description": "Small amount transaction matching automated card testing bot pattern.",
+        "severity": "High",
+        "value": -4.3
+      }
+    ],
+    "model_version": "v1.2",
+    "source": "Single"
+  },
+  {
+    "id": "TXN-312984",
+    "timestamp": "2026-09-29T13:44:03.981Z",
+    "amount": 4650,
+    "time": 72000,
+    "prediction": "Legitimate",
+    "fraud_probability": 0.038,
+    "risk_level": "Low",
+    "mode": "DEMO",
+    "model_name": "LightGBM Classifier (Kaggle ULB)",
+    "threshold_used": 0.5,
+    "model_insights": [
+      {
+        "factor": "Authorized Restaurant POS",
+        "description": "Chip & PIN verified local merchant purchase during evening hours.",
+        "severity": "Low",
+        "value": "Verified POS"
+      }
+    ],
+    "model_version": "v1.2",
+    "source": "Single"
+  },
+  {
+    "id": "TXN-678129",
+    "timestamp": "2026-09-28T06:32:03.981Z",
+    "amount": 499,
+    "time": 21600,
+    "prediction": "Legitimate",
+    "fraud_probability": 0.008,
+    "risk_level": "Low",
+    "mode": "DEMO",
+    "model_name": "LightGBM Classifier (Kaggle ULB)",
+    "threshold_used": 0.5,
+    "model_insights": [
+      {
+        "factor": "Verified Digital Subscription",
+        "description": "Standard monthly digital subscription matching historical billing cycle.",
+        "severity": "Low",
+        "value": "Nominal"
+      }
+    ],
+    "model_version": "v1.2",
+    "source": "Single"
+  },
+  {
+    "id": "TXN-290145",
+    "timestamp": "2026-09-21T23:20:03.981Z",
+    "amount": 142000,
+    "time": 12600,
+    "prediction": "Fraudulent",
+    "fraud_probability": 0.978,
+    "risk_level": "High",
+    "mode": "DEMO",
+    "model_name": "LightGBM Classifier (Kaggle ULB)",
+    "threshold_used": 0.5,
+    "model_insights": [
+      {
+        "factor": "Account Takeover Drain Pattern",
+        "description": "Critical multi-sigma deviation across V17 (-9.40), V14 (-9.80), and V12 (-8.40) with maximum ticket size.",
+        "severity": "High",
+        "value": "₹1,42,000"
+      }
+    ],
+    "model_version": "v1.2",
+    "source": "Single"
+  },
+  {
+    "id": "TXN-819230",
+    "timestamp": "2026-09-17T06:32:03.981Z",
+    "amount": 34200,
+    "time": 48000,
+    "prediction": "Legitimate",
+    "fraud_probability": 0.385,
+    "risk_level": "Medium",
+    "mode": "DEMO",
+    "model_name": "LightGBM Classifier (Kaggle ULB)",
+    "threshold_used": 0.5,
+    "model_insights": [
+      {
+        "factor": "Travel Merchant Step-Up",
+        "description": "High-ticket airline ticket issued with verified 3D-Secure biometric confirmation.",
+        "severity": "Medium",
+        "value": "3DS Authenticated"
+      }
+    ],
+    "model_version": "v1.2",
+    "source": "Single"
+  },
+  {
+    "id": "TXN-441920",
+    "timestamp": "2026-09-13T11:20:03.981Z",
+    "amount": 54000,
+    "time": 11400,
+    "prediction": "Fraudulent",
+    "fraud_probability": 0.832,
+    "risk_level": "High",
+    "mode": "DEMO",
+    "model_name": "LightGBM Classifier (Kaggle ULB)",
+    "threshold_used": 0.5,
+    "model_insights": [
+      {
+        "factor": "Circadian Peak Deviation (3:15 AM)",
+        "description": "Unusual off-hours electronic transfer paired with anomalous V12 authorization component.",
+        "severity": "High",
+        "value": -4.95
+      }
+    ],
+    "model_version": "v1.2",
+    "source": "Single"
+  },
+  {
+    "id": "TXN-734182",
+    "timestamp": "2026-09-08T23:20:03.981Z",
+    "amount": 8900,
+    "time": 58000,
+    "prediction": "Legitimate",
+    "fraud_probability": 0.062,
+    "risk_level": "Low",
+    "mode": "DEMO",
+    "model_name": "LightGBM Classifier (Kaggle ULB)",
+    "threshold_used": 0.5,
+    "model_insights": [
+      {
+        "factor": "Domestic Retail Store Purchase",
+        "description": "Standard retail point-of-sale clearance during regular daytime trading window.",
+        "severity": "Low",
+        "value": "Low Variance"
+      }
+    ],
+    "model_version": "v1.2",
+    "source": "Single"
+  }
+]
