@@ -538,11 +538,11 @@ Shiwanshu Kumar Singh
 
 Team Members
 
-Ashutosh
+Ashutosh Kumar
 
-Devansh
+Devansh Srivastava
 
-Hariom
+Hariom Kumar
 
 16. Academic Disclaimer
 
