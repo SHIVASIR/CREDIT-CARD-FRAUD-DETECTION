@@ -10,7 +10,7 @@ Open FraudShield
 
 Project Name: FraudShield
 
-Tagline: AI-Powered Credit Card Fraud Detection
+Tagline: Credit Card Fraud Detection
 
 Primary Algorithm: LightGBM Classifier (LGBMClassifier)
 
@@ -534,7 +534,7 @@ Model drift detection
 
 Project Leader
 
-Shivanshu Kumar Singh
+Shiwanshu Kumar Singh
 
 Team Members
 
