@@ -6,7 +6,7 @@ FraudShield is an end-to-end credit card fraud detection web platform developed 
 
 Open FraudShield
 
-1. Project Overview
+1. Project Overview.
 
 Project Name: FraudShield
 
